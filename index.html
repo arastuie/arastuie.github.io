@@ -177,7 +177,7 @@
       <a href="https://scholar.google.com/citations?hl=en&amp;user=fOvU1-4AAAAJ">Scholar</a><span>&middot;</span>
       <a href="https://github.com/arastuie">GitHub</a><span>&middot;</span>
       <a href="https://www.linkedin.com/in/arastuie">LinkedIn</a><span>&middot;</span>
-      <a href="mailto:makan.arastuie@gmail.com">Email</a>
+      <a href="#" id="email">Email</a>
     </p>
   </div>
 </header>
@@ -294,6 +294,16 @@ The Web Conference 2019, and I wrote about
     });
     mq.addEventListener('change', paintIcon);
     paintIcon();
+  })();
+
+  // Email assembled at runtime to keep the address out of the static HTML.
+  (function () {
+    var a = document.getElementById('email');
+    var addr = ['makan', '.', 'arastuie'].join('') + '@' + ['gmail', 'com'].join('.');
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      location.href = 'mailto:' + addr;
+    });
   })();
 </script>
 
