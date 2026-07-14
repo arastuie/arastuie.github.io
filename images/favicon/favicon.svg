@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 7">
+<style>.ink{fill:#2e2d2b}@media(prefers-color-scheme:dark){.ink{fill:#c6c5c0}}</style>
+<rect x="1" y="1" width="1" height="1" class="ink"/>
+<rect x="2" y="1" width="1" height="1" class="ink"/>
+<rect x="4" y="1" width="1" height="1" class="ink"/>
+<rect x="1" y="2" width="1" height="1" class="ink"/>
+<rect x="3" y="2" width="1" height="1" class="ink"/>
+<rect x="5" y="2" width="1" height="1" class="ink"/>
+<rect x="1" y="3" width="1" height="1" class="ink"/>
+<rect x="3" y="3" width="1" height="1" class="ink"/>
+<rect x="5" y="3" width="1" height="1" class="ink"/>
+<rect x="1" y="4" width="1" height="1" class="ink"/>
+<rect x="3" y="4" width="1" height="1" class="ink"/>
+<rect x="5" y="4" width="1" height="1" class="ink"/>
+<rect x="7" y="4" width="1" height="1" class="ink"/>
+<rect x="1" y="5" width="1" height="1" class="ink"/>
+<rect x="3" y="5" width="1" height="1" class="ink"/>
+<rect x="5" y="5" width="1" height="1" class="ink"/>
+<rect x="7" y="5" width="1" height="1" class="ink"/>
+</svg>
