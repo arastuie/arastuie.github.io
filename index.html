@@ -81,23 +81,23 @@
   <h1>Makan Arastuie</h1>
   <p>This page is being rebuilt as we speak. Check back shortly.</p>
   <p class="quip">The old version still said I worked at Seagate. It's been a minute.</p>
+  <p>In the meantime, you can reach me at <span id="email"><noscript>makan [dot] arastuie [at] gmail</noscript></span>.</p>
   <p class="links">
     <a href="m/resume.pdf">Resume</a><span>&middot;</span>
     <a href="https://scholar.google.com/citations?hl=en&amp;user=fOvU1-4AAAAJ">Scholar</a><span>&middot;</span>
     <a href="https://github.com/arastuie">GitHub</a><span>&middot;</span>
-    <a href="https://www.linkedin.com/in/arastuie">LinkedIn</a><span>&middot;</span>
-    <a href="#" id="email">Email</a>
+    <a href="https://www.linkedin.com/in/arastuie">LinkedIn</a>
   </p>
 </main>
 <script>
   // Assembled at runtime to keep the address out of the static HTML.
   (function () {
-    var a = document.getElementById('email');
+    var el = document.getElementById('email');
     var addr = ['makan', '.', 'arastuie'].join('') + '@' + ['gmail', 'com'].join('.');
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      location.href = 'mailto:' + addr;
-    });
+    var a = document.createElement('a');
+    a.href = 'mailto:' + addr;
+    a.textContent = addr;
+    el.appendChild(a);
   })();
 </script>
 </body>
