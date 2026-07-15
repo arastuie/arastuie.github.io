@@ -95,7 +95,11 @@
   // Assembled at runtime to keep the address out of the static HTML.
   (function () {
     var el = document.getElementById('email');
-    el.textContent = ['makan', '.', 'arastuie'].join('') + '@' + ['gmail', 'com'].join('.');
+    var addr = ['makan', '.', 'arastuie'].join('') + '@' + ['gmail', 'com'].join('.');
+    var a = document.createElement('a');
+    a.href = 'mailto:' + addr;
+    a.textContent = addr;
+    el.appendChild(a);
   })();
 </script>
 </body>
