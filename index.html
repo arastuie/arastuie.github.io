@@ -4,24 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="Makan Arastuie — machine learning engineer.">
+<meta name="description" content="Makan Arastuie is a machine learning engineer. Founding ML engineer at Brightwave; previously applied ML research at Seagate; first-author papers at NeurIPS 2020 and The Web Conference 2019.">
 <title>Makan Arastuie</title>
 <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+<script>
+  // Apply a saved theme override before first paint to avoid a flash.
+  (function () {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+  })();
+</script>
 <style>
   @font-face {
-    font-family: "Departure Mono";
-    src: local("Departure Mono"), local("DepartureMono-Regular"), url("fonts/DepartureMono-Regular.woff2") format("woff2");
-    font-weight: 400;
+    font-family: "STIX Two Text";
+    src: local("STIX Two Text"), url("fonts/STIXTwoText.woff2") format("woff2");
+    font-weight: 400 700;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
     font-family: "STIX Two Text";
-    src: local("STIX Two Text"), url("fonts/STIXTwoText.woff2") format("woff2");
-    font-weight: 400 700;
+    src: local("STIX Two Text Italic"), local("STIXTwoText-Italic"), url("fonts/STIXTwoText-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Departure Mono";
+    src: local("Departure Mono"), local("DepartureMono-Regular"), url("fonts/DepartureMono-Regular.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -30,39 +44,39 @@
     --text: #2e2d2b;
     --muted: #6e6d68;
     --faint: #c2c0ba;
+    --rule: #9a9892;
+    --rule-soft: #e6e4df;
+  }
+  :root[data-theme="dark"] {
+    --bg: #191918;
+    --text: #c6c5c0;
+    --muted: #8f8e88;
+    --faint: #52514d;
+    --rule: #6a6963;
+    --rule-soft: #2f2e2b;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #191918;
       --text: #c6c5c0;
       --muted: #8f8e88;
       --faint: #52514d;
+      --rule: #6a6963;
+      --rule-soft: #2f2e2b;
     }
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
   body {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+    padding: 3.5rem 1.4rem 4.5rem;
+    max-width: 50rem;
     background: var(--bg);
     color: var(--text);
     font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
     font-size: 18px;
     line-height: 1.55;
-    padding: 1.4rem;
   }
-  main { max-width: 34rem; text-align: center; }
-  h1 {
-    font-family: "Departure Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    margin: 0 0 1.2rem;
-  }
-  p { margin: 0.9rem 0; }
-  .quip { color: var(--muted); font-style: italic; }
   a {
     color: inherit;
     text-decoration: underline;
@@ -71,28 +85,213 @@
     text-underline-offset: 3px;
   }
   a:hover { text-decoration-color: var(--text); }
-  .links { margin-top: 1.6rem; font-size: 15px; color: var(--muted); }
+
+  #theme-toggle {
+    position: absolute;
+    top: 3.6rem;
+    right: 1.4rem;
+    background: none;
+    border: none;
+    padding: 0.3rem;
+    font-size: 17px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  #theme-toggle:hover { color: var(--text); }
+
+  header { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .avatar {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Departure Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  .links { margin-top: 0.8rem; font-size: 15px; color: var(--muted); }
   .links a { color: var(--muted); }
-  .links a:hover { color: var(--text); }
+  .links a:hover { color: var(--text); text-decoration-color: var(--text); }
   .links span { color: var(--faint); margin: 0 0.35rem; }
+
+  h2 {
+    margin: 2.6rem 0 1.1rem;
+    font-size: 17px;
+    font-weight: 400;
+    font-variant: small-caps;
+    letter-spacing: 0.09em;
+    border-bottom: 0.5px solid var(--rule);
+    padding-bottom: 0.3rem;
+  }
+
+  p { margin: 0.9rem 0; }
+
+  .entry { display: grid; grid-template-columns: 100px 1fr; gap: 1.25rem; margin-bottom: 1.7rem; }
+  .when {
+    color: var(--muted);
+    font-size: 15px;
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+  .what { position: relative; padding-left: 1.35rem; border-left: 1px solid var(--rule-soft); }
+  .what::before {
+    content: "";
+    position: absolute;
+    left: -5px; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--faint);
+  }
+  .what strong { font-weight: 700; }
+  .role { color: var(--muted); font-style: italic; }
+
+  .pub { margin-bottom: 1.15rem; }
+  .pub .venue { color: var(--muted); }
+  .pub .extras { font-size: 15px; }
+
+  @media (max-width: 560px) {
+    .avatar { width: 158px; height: 158px; }
+    h1 { font-size: 23px; }
+    .entry { grid-template-columns: 1fr; gap: 0.3rem; }
+    .what { border-left: none; padding-left: 0; }
+    .what::before { display: none; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>Makan Arastuie</h1>
-  <p>This page is being rebuilt as we speak. Check back shortly.</p>
-  <p class="quip">The old version still said I worked at Seagate. It's been a minute.</p>
-  <p>In the meantime, you can reach me at <span id="email"><noscript>makan [dot] arastuie [at] gmail</noscript></span>.</p>
-  <p class="links">
-    <a target="_blank" rel="noopener noreferrer" href="m/resume.pdf">Resume</a><span>&middot;</span>
-    <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?hl=en&amp;user=fOvU1-4AAAAJ">Scholar</a><span>&middot;</span>
-    <a target="_blank" rel="noopener noreferrer" href="https://github.com/arastuie">GitHub</a><span>&middot;</span>
-    <a target="_blank" rel="noopener noreferrer" href="https://x.com/arastuie">X</a><span>&middot;</span>
-    <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/arastuie">LinkedIn</a>
-  </p>
-</main>
+
+<button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+
+<header>
+  <img class="avatar" src="images/avatar.jpg" alt="Makan Arastuie">
+  <div>
+    <h1>Makan Arastuie</h1>
+    <p class="links">
+      <a target="_blank" rel="noopener noreferrer" href="m/resume.pdf">Resume</a><span>&middot;</span>
+      <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?hl=en&amp;user=fOvU1-4AAAAJ">Scholar</a><span>&middot;</span>
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/arastuie">GitHub</a><span>&middot;</span>
+      <a target="_blank" rel="noopener noreferrer" href="https://x.com/arastuie">X</a><span>&middot;</span>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/arastuie">LinkedIn</a>
+    </p>
+  </div>
+</header>
+
+<p>Hey, I'm Makan (think Porsche Macan, if that helps). I spent the past ~3 years as a founding ML engineer at
+<a target="_blank" rel="noopener noreferrer" href="https://brightwave.io">Brightwave</a>, building production agentic systems end to end.</p>
+
+<p>Before that I spent ~4 years doing applied ML research at Seagate across hard drive design and manufacturing. My graduate research was on the intersection of machine learning and complex networks,
+advised by <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/site/kevinshuaixu/">Dr. Kevin S. Xu</a>.</p>
+
+<p>I've been living in Colorado for a while now, enjoying skiing, mountain biking, and most recently riding my motorcycle
+in the canyons. I also play pickup soccer when I'm not injured :)</p>
+
+<p>You can reach me at <span id="email"><noscript>makan [dot] arastuie [at] gmail</noscript></span>.</p>
+
+<h2>Timeline</h2>
+
+<div class="entry">
+  <div class="when">2023 &ndash; 2026</div>
+  <div class="what">
+    <strong>Brightwave</strong> <span class="role">&middot; Founding Machine Learning Engineer</span><br>
+    I joined the two founders as the first hire and helped bring the product from an idea to production,
+    building many of its core systems along the way, growing it into a workspace where teams collaborate
+    in shared projects spanning 10k+ sources each and run long-horizon agentic workflows.
+  </div>
+</div>
+
+<div class="entry">
+  <div class="when">2020 &ndash; 2023</div>
+  <div class="what">
+    <strong>Seagate</strong> <span class="role">&middot; MLE Intern &rarr; MLE II &rarr; Senior MLE</span><br>
+    I started on the internal ML team working on hard drive test reliability and efficiency in manufacturing, and storage-domain NLP,
+    and later joined the Seagate Research Group to work on ML-accelerated design of recording media.
+  </div>
+</div>
+
+<div class="entry">
+  <div class="when">2016 &ndash; 2020</div>
+  <div class="what">
+    <strong>IDEAS Lab, University of Toledo</strong> <span class="role">&middot; Research Assistant</span><br>
+    I worked on generative models of link formation in dynamic networks, and was a founding
+    contributor of <a target="_blank" rel="noopener noreferrer" href="https://github.com/IdeasLabUT/dynetworkx">DyNetworkX</a>.
+  </div>
+</div>
+
+<div class="entry">
+  <div class="when">2013 &ndash; 2020</div>
+  <div class="what">
+    <strong>University of Toledo</strong> <span class="role">&middot; B.S. &amp; M.S.E., Computer Science &amp; Engineering</span>
+  </div>
+</div>
+
+<h2>Selected Publications</h2>
+
+<div class="pub">
+  <strong>M. Arastuie</strong>, S. Paul, K. Xu.
+  &ldquo;CHIP: A Hawkes Process Model for Continuous-time Networks with Scalable and Consistent Estimation.&rdquo;
+  <span class="venue">NeurIPS, 2020.</span><br>
+  <span class="extras">
+    <a target="_blank" rel="noopener noreferrer" href="https://proceedings.neurips.cc/paper/2020/file/c5a0ac0e2f48af1a4e619e7036fe5977-Paper.pdf">paper</a> &middot;
+    <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1908.06940">arXiv</a> &middot;
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/IdeasLabUT/CHIP-Network-Model">code</a> &middot;
+    <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/kaqMGrMWXcI">spotlight video</a>
+  </span>
+</div>
+
+<div class="pub">
+  <strong>M. Arastuie</strong>, K. Xu.
+  &ldquo;Personalized Degrees: Effects on Link Formation in Dynamic Networks from an Egocentric Perspective.&rdquo;
+  <span class="venue">The Web Conference (WWW) Companion, 2019.</span><br>
+  <span class="extras">
+    <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1712.01796">arXiv</a> &middot;
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/arastuie/network_research">code</a>
+  </span>
+</div>
+
+<h2>Writing</h2>
+
+<div class="pub">
+  <a target="_blank" rel="noopener noreferrer" href="https://www.brightwave.io/blog/agentic-memory">Agentic Memory</a>
+  <span class="venue">&middot; Brightwave engineering blog, 2026.</span><br>
+  <span class="extras">How one long-lived agent per user curates durable memory from the platform's event log.</span>
+</div>
+
 <script>
-  // Assembled at runtime to keep the address out of the static HTML.
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function effectiveTheme() {
+      var t = document.documentElement.dataset.theme;
+      if (t === 'light' || t === 'dark') return t;
+      return mq.matches ? 'dark' : 'light';
+    }
+    function paintIcon() {
+      // Show the mode you would switch TO.
+      btn.textContent = effectiveTheme() === 'dark' ? '☀︎' : '☽';
+    }
+    btn.addEventListener('click', function () {
+      var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+      if ((next === 'dark') === mq.matches) {
+        // Choice matches the system again: drop the override and follow the system.
+        delete document.documentElement.dataset.theme;
+        localStorage.removeItem('theme');
+      } else {
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      }
+      paintIcon();
+    });
+    mq.addEventListener('change', paintIcon);
+    paintIcon();
+  })();
+
+  // Email assembled at runtime to keep the address out of the static HTML.
   (function () {
     var el = document.getElementById('email');
     var addr = ['makan', '.', 'arastuie'].join('') + '@' + ['gmail', 'com'].join('.');
@@ -102,5 +301,6 @@
     el.appendChild(a);
   })();
 </script>
+
 </body>
 </html>
